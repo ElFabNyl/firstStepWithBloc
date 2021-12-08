@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:state/logic/cubit/counter_cubit.dart';
+import 'package:state/logic/cubit/counter/counter_cubit.dart';
 
 class SecondSreen extends StatefulWidget {
   SecondSreen({Key? key}) : super(key: key);
