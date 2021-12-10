@@ -8,11 +8,11 @@ part 'counter_state.dart';
 
 class CounterCubit extends Cubit<CounterState> {
   final InternetCubit internetCubit;
-  StreamSubscription streamSubscription;
+  StreamSubscription internetStreamSubscription;
 
-  CounterCubit({required this.internetCubit, required this.streamSubscription})
+  CounterCubit({required this.internetCubit, required this.internetStreamSubscription})
       : super(CounterState(counterValue: 0, wasIncremented: false)) {
-    streamSubscription = internetCubit.listen((internetState) {
+    internetStreamSubscription = internetCubit.stream.listen((internetState) {
       if (internetState is InternetConnected &&
           internetState.connectionType == ConnectionType.wifi) {
         //we increment the counter

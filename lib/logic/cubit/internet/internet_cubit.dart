@@ -39,4 +39,5 @@ class InternetCubit extends Cubit<InternetState> {
     connectivityStreamSubcription.cancel();
     return super.close();
   }
+
 }
