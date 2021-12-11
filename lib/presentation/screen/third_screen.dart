@@ -1,6 +1,8 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:state/logic/cubit/counter/counter_cubit.dart';
+import 'package:state/logic/cubit/internet/internet_cubit.dart';
 import 'package:state/presentation/screen/second_screen.dart';
 
 class ThirdScreen extends StatefulWidget {
@@ -61,7 +63,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                     ),
                     const SizedBox(width: 20.0),
                     FloatingActionButton(
-                      heroTag:  null,
+                      heroTag: null,
                       onPressed: () {
                         BlocProvider.of<CounterCubit>(context).increment();
                       },
@@ -75,9 +77,12 @@ class _ThirdScreenState extends State<ThirdScreen> {
                     color: widget.colors,
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => BlocProvider.value(
-                          value : CounterCubit(), 
-                          child: SecondSreen())),
+                        MaterialPageRoute(
+                            builder: (_) => BlocProvider.value(
+                                value: CounterCubit(
+                                    internetCubit: InternetCubit(
+                                        connectivity: Connectivity())),
+                                child: SecondSreen())),
                       );
                     },
                     child: const Text('Go to next screen')),
