@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:state/constants/enums.dart';
+import 'package:state/logic/cubit/color/cubit/color_cubit.dart';
 import 'package:state/logic/cubit/counter/counter_cubit.dart';
 import 'package:state/logic/cubit/internet/internet_cubit.dart';
 
@@ -98,11 +99,26 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: const Text('Go to second screen')),
                   const SizedBox(height: 24.0),
                   MaterialButton(
-                      color: widget.colors,
-                      onPressed: () {
-                        Navigator.of(context).pushNamed('/third_screen');
-                      },
-                      child: const Text('Go to third screen')),
+                    color: widget.colors,
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/third_screen');
+                    },
+                    child: const Text('Go to third screen'),
+                  ),
+                  const SizedBox(height: 24.0),
+                  Builder(builder: (context) {
+                    // final colorState = context.watch<ColorCubit>().state;
+                    final counterState = context.watch<CounterCubit>().state;
+                    if (counterState.wasIncremented == false) {
+                      return const Text('');
+                    } else if (counterState.wasIncremented == true) {
+                      return MaterialButton(
+                          color: Colors.red,
+                          onPressed: () {},
+                          child: const Text('new button added'));
+                    }
+                    return const Text('');
+                  }),
                 ],
               ),
             );

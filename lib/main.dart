@@ -6,6 +6,8 @@ import 'package:state/logic/cubit/internet/internet_cubit.dart';
 
 import 'package:state/router/app_router.dart';
 
+import 'logic/cubit/color/cubit/color_cubit.dart';
+
 void main() {
   runApp(MyApp(appRouter: AppRouter(), connectivity: Connectivity()));
 }
@@ -21,9 +23,14 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (_) => CounterCubit(
-                internetCubit: InternetCubit(connectivity: connectivity))),
-        BlocProvider(create: (_) => InternetCubit(connectivity: connectivity))
+          create: (_) => CounterCubit(
+            internetCubit: InternetCubit(connectivity: connectivity),
+          ),
+        ),
+        BlocProvider(
+          create: (_) => InternetCubit(connectivity: connectivity),
+        ),
+        BlocProvider(create: (_) => ColorCubit())
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
